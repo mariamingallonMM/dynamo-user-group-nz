@@ -1,0 +1,57 @@
+<Workspace Version="1.3.3.4111" X="166.629074272174" Y="-1965.62702380859" zoom="0.194848807012187" ScaleFactor="1" Name="Home" Description="" RunType="Manual" RunPeriod="1000" HasRunWithoutCrash="False">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Circle" resolvedName="Autodesk.DesignScript.Geometry.Circle" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Line" resolvedName="Autodesk.DesignScript.Geometry.Line" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="List" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
+    <ClassMap partialName="Plane" resolvedName="Autodesk.DesignScript.Geometry.Plane" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Point.ByCoordinates" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="574fefde-1c49-4c52-ad85-7989e24b18e5" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1447.28995065176" y="13043.4781981808" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="points;" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="1b179dd4-06c0-4c53-a552-f7c0a044819a" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Harmonic" x="975.527024630286" y="12876.9107409331" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="true" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <PortInfo index="3" default="False" />
+      <PortInfo index="4" default="False" />
+      <PortInfo index="5" default="False" />
+      <ID value="446b188a-69b3-4d8c-ad81-3c25a439afb6" />
+      <Name value="Harmonic" />
+      <Description value="Creating harmonic waves by combining Cos waves" />
+      <Inputs>
+        <Input value="xValueOfPoints" />
+        <Input value="NumberOfCyclesFirstWave" />
+        <Input value="NumberOfCyclesSecondWave" />
+        <Input value="HeightOfCurve" />
+        <Input value="RatioOfFirstWaveLenght" />
+        <Input value="RatioOfSecondWaveLenght" />
+      </Inputs>
+      <Outputs>
+        <Output value="polycurve" />
+        <Output value="points" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="1965111b-0140-4c6d-8716-d79929069236" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="764.021375789196" y="12924.9398321763" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="40;&#xA;2;&#xA;970;&#xA;0.2;&#xA;1;" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="be5720c5-265c-45db-87eb-270060b21191" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1413.36672619918" y="12863.3583785014" isVisible="false" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="polycurve;" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="1b179dd4-06c0-4c53-a552-f7c0a044819a" start_index="0" end="be5720c5-265c-45db-87eb-270060b21191" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1b179dd4-06c0-4c53-a552-f7c0a044819a" start_index="1" end="574fefde-1c49-4c52-ad85-7989e24b18e5" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1965111b-0140-4c6d-8716-d79929069236" start_index="0" end="1b179dd4-06c0-4c53-a552-f7c0a044819a" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1965111b-0140-4c6d-8716-d79929069236" start_index="1" end="1b179dd4-06c0-4c53-a552-f7c0a044819a" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1965111b-0140-4c6d-8716-d79929069236" start_index="2" end="1b179dd4-06c0-4c53-a552-f7c0a044819a" end_index="3" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1965111b-0140-4c6d-8716-d79929069236" start_index="3" end="1b179dd4-06c0-4c53-a552-f7c0a044819a" end_index="4" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1965111b-0140-4c6d-8716-d79929069236" start_index="4" end="1b179dd4-06c0-4c53-a552-f7c0a044819a" end_index="5" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-393.559181521661" eyeY="1284.77018622851" eyeZ="2260.35832056907" lookX="533.76475785481" lookY="-1603.69913809845" lookZ="-2154.97349892006" upX="-0.179292781332078" upY="-0.666243283321397" upZ="0.723860518659557" />
+  </Cameras>
+</Workspace>
