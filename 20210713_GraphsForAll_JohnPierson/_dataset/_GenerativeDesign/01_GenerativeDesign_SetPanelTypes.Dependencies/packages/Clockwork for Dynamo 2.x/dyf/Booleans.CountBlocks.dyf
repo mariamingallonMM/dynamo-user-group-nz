@@ -1,0 +1,428 @@
+{
+  "Uuid": "3ec3b120-b2f0-4cce-a2f7-9377b5de97fd",
+  "IsCustomNode": true,
+  "Category": "Clockwork.List.Inspect.Query",
+  "Description": "Retrieves the lengths of uninterrupted sequences of booleans (true or false) in a given list.",
+  "Name": "Booleans.CountBlocks",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "NodeType": "OutputNode",
+      "ElementResolver": null,
+      "Symbol": "true",
+      "Id": "5c50f912eccd4801b0df0402617a43fb",
+      "Inputs": [
+        {
+          "Id": "7f79444dff6b476d919ce1c543fe0b41",
+          "Name": "",
+          "Description": "",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "A function output, use with custom nodes"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "booleans",
+        "TypeName": "bool",
+        "TypeRank": 1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "9c890eaa3cb54926aabdb8942495a3bc",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "555c9031a2c440d9a5fe8b31d8ed8312",
+          "Name": "",
+          "Description": "Symbol",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.HigherOrder.Filter, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "8995d068af924cdf99d6ee0d47c5c15a",
+      "Inputs": [
+        {
+          "Id": "4f624437b78c4c078718520ef7214867",
+          "Name": "list",
+          "Description": "List to filter",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0025ff541c8c4bc8b1502d1235d77a56",
+          "Name": "condition",
+          "Description": "Predicate used to determine if an element is filtered in or out.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "00862fa837814ac58a31ab879811ee66",
+          "Name": "in",
+          "Description": "List containing all elements \"x\" where condition(x) = True",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e42f92fc727a4db1bb4702e8f227206a",
+          "Name": "out",
+          "Description": "List containing all elements \"x\" where condition(x) = False",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Filters a sequence by a given condition such that for an arbitrary element \"x,\" condition(x) = True or False."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Formula, CoreNodeModels",
+      "Formula": "x=0",
+      "NodeType": "FormulaNode",
+      "Id": "89fe746f489348b893a3261f9b0283d1",
+      "Inputs": [
+        {
+          "Id": "9cc5c7109b6d44989dc2d2e6d79d5a01",
+          "Name": "x",
+          "Description": "variable",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f787e40f5ea44fef9c57f62f9f004a18",
+          "Name": "",
+          "Description": "Result of math computation",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Evaluates mathematical formulas. Uses NCalc: http://ncalc.codeplex.com/"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "seq[0];\nseq[1];",
+      "Id": "a855d7eef282406a9aed353a53307565",
+      "Inputs": [
+        {
+          "Id": "a13daf781c88414583851cfe2cf4d7dc",
+          "Name": "seq",
+          "Description": "seq",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6b488bad79e649559d87d9087baa4878",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e8e582946e5d4e24b44af1f98d015b74",
+          "Name": "",
+          "Description": "Value of expression at line 2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.HigherOrder.Filter, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "834cf15410604f4b8f0cb1020c7514f6",
+      "Inputs": [
+        {
+          "Id": "747676d39e7044cd9f5326260d158084",
+          "Name": "list",
+          "Description": "List to filter",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4455d0fc6b3f42f2b51b083cc1c2a065",
+          "Name": "condition",
+          "Description": "Predicate used to determine if an element is filtered in or out.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "80cbd758089b4a2a8f1fc24014f07982",
+          "Name": "in",
+          "Description": "List containing all elements \"x\" where condition(x) = True",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "247c65dd1b19440eb7fea72d865af585",
+          "Name": "out",
+          "Description": "List containing all elements \"x\" where condition(x) = False",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Filters a sequence by a given condition such that for an arbitrary element \"x,\" condition(x) = True or False."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import clr\r\n\r\nbooleans = IN[0]\r\ntruelist = list()\r\ntruelist.append(0)\r\ntruecounter = 0\r\nfalselist = list()\r\nfalselist.append(0)\r\nfalsecounter = 0\r\n\r\nfor item in booleans:\r\n\tif item == True:\r\n\t\ttruelist[truecounter] += 1\r\n\t\tfalsecounter += 1\r\n\t\tfalselist.append(0)\r\n\telif item == False:\r\n\t\tfalselist[falsecounter] += 1\r\n\t\ttruecounter += 1\r\n\t\ttruelist.append(0)\r\nOUT = (truelist,falselist)",
+      "VariableInputPorts": true,
+      "Id": "c74f267c00844e33bad5626618e6a3dc",
+      "Inputs": [
+        {
+          "Id": "94b9fd33a3c34441832c4ff80f0954dc",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f6176fa5d0d64b57a3024033dc6f47d4",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded IronPython script."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "NodeType": "OutputNode",
+      "ElementResolver": null,
+      "Symbol": "false",
+      "Id": "3c979bac044549caa40ce189caa92bed",
+      "Inputs": [
+        {
+          "Id": "8d73c6eac1f0401f952038784b06e9ae",
+          "Name": "",
+          "Description": "",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "A function output, use with custom nodes"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "555c9031a2c440d9a5fe8b31d8ed8312",
+      "End": "94b9fd33a3c34441832c4ff80f0954dc",
+      "Id": "7ef57f45bb564285bf1cbc3bcc45a4e3"
+    },
+    {
+      "Start": "e42f92fc727a4db1bb4702e8f227206a",
+      "End": "8d73c6eac1f0401f952038784b06e9ae",
+      "Id": "3f3aee9da39d454297926ac120d0faba"
+    },
+    {
+      "Start": "f787e40f5ea44fef9c57f62f9f004a18",
+      "End": "0025ff541c8c4bc8b1502d1235d77a56",
+      "Id": "4b4ea861e03d45fdbf01be2bfc5cde6f"
+    },
+    {
+      "Start": "f787e40f5ea44fef9c57f62f9f004a18",
+      "End": "4455d0fc6b3f42f2b51b083cc1c2a065",
+      "Id": "bdfeed0118f141d6a3fb2106b61c1cc4"
+    },
+    {
+      "Start": "6b488bad79e649559d87d9087baa4878",
+      "End": "747676d39e7044cd9f5326260d158084",
+      "Id": "1686b933c8a54f78942f9a94a19774b7"
+    },
+    {
+      "Start": "e8e582946e5d4e24b44af1f98d015b74",
+      "End": "4f624437b78c4c078718520ef7214867",
+      "Id": "5c85af38b9e34997926d1cab05e30be2"
+    },
+    {
+      "Start": "247c65dd1b19440eb7fea72d865af585",
+      "End": "7f79444dff6b476d919ce1c543fe0b41",
+      "Id": "c9e783230a3a492380f053ce159e91e0"
+    },
+    {
+      "Start": "f6176fa5d0d64b57a3024033dc6f47d4",
+      "End": "a13daf781c88414583851cfe2cf4d7dc",
+      "Id": "993bb2c7a67d40d7a7aed8464dbfa0b1"
+    }
+  ],
+  "Dependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.0.1.5055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "Id": "5c50f912eccd4801b0df0402617a43fb",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Output",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 1092.70514820593,
+        "Y": 71.4617784711387
+      },
+      {
+        "Id": "9c890eaa3cb54926aabdb8942495a3bc",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Input",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 135.257410296412,
+        "Y": 46.2183333333333
+      },
+      {
+        "Id": "8995d068af924cdf99d6ee0d47c5c15a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "List.Filter",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 852.606864274571,
+        "Y": 155.98751950078
+      },
+      {
+        "Id": "89fe746f489348b893a3261f9b0283d1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Formula",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 658.252730109204,
+        "Y": 182.645865834633
+      },
+      {
+        "Id": "a855d7eef282406a9aed353a53307565",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Code Block",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 621.0,
+        "Y": 50.4366666666667
+      },
+      {
+        "Id": "834cf15410604f4b8f0cb1020c7514f6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "List.Filter",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 852.606864274571,
+        "Y": 45.9875195007799
+      },
+      {
+        "Id": "c74f267c00844e33bad5626618e6a3dc",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Python Script",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 397.0,
+        "Y": 46.2183333333333
+      },
+      {
+        "Id": "3c979bac044549caa40ce189caa92bed",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Output",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 1093.60686427457,
+        "Y": 181.611544461778
+      }
+    ],
+    "Annotations": [],
+    "X": 30.0,
+    "Y": 296.199826989619,
+    "Zoom": 1.10899653979239
+  }
+}

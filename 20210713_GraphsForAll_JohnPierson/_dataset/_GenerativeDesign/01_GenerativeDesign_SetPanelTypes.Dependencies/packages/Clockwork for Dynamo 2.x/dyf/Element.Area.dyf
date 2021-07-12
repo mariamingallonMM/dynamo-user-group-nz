@@ -1,0 +1,317 @@
+{
+  "Uuid": "9de38788-dc20-4d2c-a0e7-ff577538488a",
+  "IsCustomNode": true,
+  "Category": "Clockwork.Revit.Elements.Query",
+  "Description": "Returns the area property of a given element (if that element has such a property)",
+  "Name": "Element.Area",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "Area": {
+        "Key": "DynamoUnits.Area",
+        "Value": "DynamoUnits.dll"
+      }
+    }
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "element",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "87f38510c9e94c958119d85d995c924f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8ae52758efe24c4c9bcf5fdb569b3793",
+          "Name": "",
+          "Description": "Symbol",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "NodeType": "OutputNode",
+      "ElementResolver": null,
+      "Symbol": "area",
+      "Id": "8f1bdb124403406c90d67cefe95d4b2d",
+      "Inputs": [
+        {
+          "Id": "a89fc71b3fd848febc6af9ae71697e90",
+          "Name": "",
+          "Description": "",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "A function output, use with custom nodes"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "a39e4422-1434-49f8-b750-0aa3e61d9c1a",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "1afea8e5be5f412389265513a8804374",
+      "Inputs": [
+        {
+          "Id": "d911475296944fb6bff61518ccfed01c",
+          "Name": "val",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5c4823e2251a4195adced61b6bf85127",
+          "Name": "displayUnitType",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9dced291970c41298743bb6abacf67d0",
+          "Name": "val",
+          "Description": "Output #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Converts a value from Revit's internal unit to a given display unit"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "896ba009-854c-4290-bd05-42c87ddcdb7c",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "0d14f73e6d5f4603b7c731e25a78072c",
+      "Inputs": [
+        {
+          "Id": "9044f859174641e989b1367910681bb0",
+          "Name": "unitType",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a5dea597002e41cf8733ca257224f780",
+          "Name": "displayUnitType",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e9b56f764dbd478da215f34ff51b1a63",
+          "Name": "unitSymbol",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Retrieves the display unit type for a given unit type. "
+    },
+    {
+      "ConcreteType": "UnitsUI.UnitTypes, UnitsUI",
+      "SelectedIndex": 0,
+      "NodeType": "ExtensionNode",
+      "Id": "aa10b7372ff44b47afd6790a7a151c13",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8ea2102468bf4a0d9875e6f96801eae9",
+          "Name": "Types",
+          "Description": "The selected Types",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a unit of measurement."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import clr\r\nclr.AddReference('RevitAPI')\r\nfrom Autodesk.Revit.DB import *\r\n\r\ndef GetArea(spatialElement):\r\n\tif hasattr(spatialElement, \"Area\"): return spatialElement.Area\r\n\telse: return None\r\n\r\nspatialElements = UnwrapElement(IN[0])\r\n\r\nif isinstance(IN[0], list): OUT = [GetArea(x) for x in spatialElements]\r\nelse: OUT = GetArea(spatialElements)",
+      "VariableInputPorts": true,
+      "Id": "20def2a0872442589b4cf305d71d0351",
+      "Inputs": [
+        {
+          "Id": "19bb1d0f27b745afa839c4a37c6a9789",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ebf8b2534aa84f1fbe98392460055cb6",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded IronPython script."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "8ae52758efe24c4c9bcf5fdb569b3793",
+      "End": "19bb1d0f27b745afa839c4a37c6a9789",
+      "Id": "220bf19e4ab2434e8ae730295891421b"
+    },
+    {
+      "Start": "9dced291970c41298743bb6abacf67d0",
+      "End": "a89fc71b3fd848febc6af9ae71697e90",
+      "Id": "ff9312b3fede4944b709fb4dc666e3d1"
+    },
+    {
+      "Start": "a5dea597002e41cf8733ca257224f780",
+      "End": "5c4823e2251a4195adced61b6bf85127",
+      "Id": "74d6ec87649146a28ffdf2abd09a6c17"
+    },
+    {
+      "Start": "8ea2102468bf4a0d9875e6f96801eae9",
+      "End": "9044f859174641e989b1367910681bb0",
+      "Id": "d16c038bd7cf4e4f8de50117addde232"
+    },
+    {
+      "Start": "ebf8b2534aa84f1fbe98392460055cb6",
+      "End": "d911475296944fb6bff61518ccfed01c",
+      "Id": "ae40fda855a444e69fc06a8c3735a8f5"
+    }
+  ],
+  "Dependencies": [
+    "a39e4422-1434-49f8-b750-0aa3e61d9c1a",
+    "896ba009-854c-4290-bd05-42c87ddcdb7c"
+  ],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.0.1.5055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "Id": "87f38510c9e94c958119d85d995c924f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Input",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 99.9801020591835,
+        "Y": -100.614543584828
+      },
+      {
+        "Id": "8f1bdb124403406c90d67cefe95d4b2d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Output",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 1048.98010205918,
+        "Y": -71.6145435848281
+      },
+      {
+        "Id": "1afea8e5be5f412389265513a8804374",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "InternalUnit.ToDisplayUnit",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 715.980102059184,
+        "Y": -71.6145435848282
+      },
+      {
+        "Id": "0d14f73e6d5f4603b7c731e25a78072c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "UnitType.DisplayUnitType",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 346.980102059184,
+        "Y": -16.6145435848281
+      },
+      {
+        "Id": "aa10b7372ff44b47afd6790a7a151c13",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Name": "Unit Types",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 99.9801020591835,
+        "Y": -16.6145435848282
+      },
+      {
+        "Id": "20def2a0872442589b4cf305d71d0351",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Python Script",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 346.980102059184,
+        "Y": -100.614543584828
+      }
+    ],
+    "Annotations": [],
+    "X": 195.095042901716,
+    "Y": 381.661599189602,
+    "Zoom": 0.73907813570939
+  }
+}
