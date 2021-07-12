@@ -1,0 +1,2125 @@
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "01_GenerativeDesign_SetPanelTypes_End",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "Revit.Elements.FamilyType": {
+        "Key": "Revit.Elements.FamilyType",
+        "Value": "RevitNodes.dll"
+      },
+      "Revit.Elements.ElementSelector": {
+        "Key": "Revit.Elements.ElementSelector",
+        "Value": "RevitNodes.dll"
+      }
+    }
+  },
+  "Inputs": [
+    {
+      "Id": "0e7faacbceb141bb96047e9ed4209868",
+      "Name": "Option",
+      "Type": "number",
+      "Value": "0",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 1.0,
+      "NumberType": "Double",
+      "Description": "A slider that produces numeric values."
+    }
+  ],
+  "Outputs": [
+    {
+      "Id": "5d22d3a0584a4f60865cff1abaceefb5",
+      "Name": "Amount of Panels Modified",
+      "Type": "integer",
+      "InitialValue": "120",
+      "Description": "Visualize the output of node."
+    }
+  ],
+  "Nodes": [
+    {
+      "ConcreteType": "GenerativeDesign.DSModelWallSelection, GenerativeDesign.Dynamo.Nodes.Revit",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "f862dce3-4317-4372-92bc-c1079e8d1141-0006a1c0"
+      ],
+      "Id": "218ec6771f99436cb9e3e63bb68aaf8f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3863c75c8ac64f78832a16275547d7fd",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.CurtainPanel.ByElement@Revit.Elements.Element",
+      "Id": "2c1dd3b3f12645afa3c0ac741ed05155",
+      "Inputs": [
+        {
+          "Id": "1898242a824f4a399b07dee9e848c01b",
+          "Name": "hostingElement",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "028f8c2f88e145b2af66a7c494fc8eb7",
+          "Name": "CurtainPanel[]",
+          "Description": "CurtainPanel[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "get all panels of curtain wall, system or slope glazing roof\n\nCurtainPanel.ByElement (hostingElement: Element): CurtainPanel[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "Revit.Elements.FamilyType.ByName(\"Panel_01\");\nRevit.Elements.FamilyType.ByName(\"Panel_02\");\nRevit.Elements.FamilyType.ByName(\"Panel_03\");",
+      "Id": "922fe2b0cde84fd885c336e1db81991e",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d9e16126755e46c3a351ba73a270f36f",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1b0ba051817445a1b4b0669e73a75abf",
+          "Name": "",
+          "Description": "Value of expression at line 2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b41866b8c4ef4bdca4feae5a8fd92cfe",
+          "Name": "",
+          "Description": "Value of expression at line 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.CurtainPanel.AsFamilyInstance",
+      "Id": "e5b9d65b6b56470a9571f148bfd07488",
+      "Inputs": [
+        {
+          "Id": "37a63a90f9054784abd401b4b91e47fa",
+          "Name": "curtainPanel",
+          "Description": "Revit.Elements.CurtainPanel",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3527860ec5fa4419bc7cd9a5575595aa",
+          "Name": "FamilyInstance",
+          "Description": "FamilyInstance",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Gets family instance from curtain Panel\n\nCurtainPanel.AsFamilyInstance ( ): FamilyInstance"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.Cycle@var[]..[],int",
+      "Id": "f10d0058b8b24e72917f7f91e799775b",
+      "Inputs": [
+        {
+          "Id": "4db5af6b040f421083b149e144cb0f2e",
+          "Name": "list",
+          "Description": "List to repeat.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2f0e78f4e53a4407899837649e43bc26",
+          "Name": "amount",
+          "Description": "Number of times to repeat.\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "375e59a9540d48e9abb291de503fb319",
+          "Name": "list",
+          "Description": "List of repeated lists.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Creates a new list by concatenining copies of a given list.\n\nList.Cycle (list: var[]..[], amount: int): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.CreateList, CoreNodeModels",
+      "VariableInputPorts": true,
+      "NodeType": "ExtensionNode",
+      "Id": "da8c2991cf174cc39a50eaad012ac856",
+      "Inputs": [
+        {
+          "Id": "009c0a7e4be744edbb44778609995bbe",
+          "Name": "item0",
+          "Description": "Item Index #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b99c99a0c3b84187b3ff3a1790877370",
+          "Name": "item1",
+          "Description": "Item Index #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b1c641cfbf71459e8b7558bb33872606",
+          "Name": "item2",
+          "Description": "Item Index #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d3fcd1462af64c2aa02718e15a7db041",
+          "Name": "list",
+          "Description": "A list",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Makes a new list out of the given inputs"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.Count@var[]..[]",
+      "Id": "13524523756f4fcdbc35c954aac1a33a",
+      "Inputs": [
+        {
+          "Id": "7ad5e6b62be3437bba3bb837ff89b8ab",
+          "Name": "list",
+          "Description": "List to get the item count of.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1cc7b89f72744f449c96e602260df0e0",
+          "Name": "count",
+          "Description": "List length.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the number of items stored in the given list.\n\nList.Count (list: var[]..[]): int"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.RefineryToolkits.SpacePlanning.Rank.ListShuffle.SeededShuffle@var[]..[],int",
+      "Id": "511f048da15c4ebe8196a59c57f63020",
+      "Inputs": [
+        {
+          "Id": "7091f66d4b4a4544903cb82d980aedb3",
+          "Name": "list",
+          "Description": "List to shuffle\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5bcea0c113b6465da2a42e20e2b7a2ea",
+          "Name": "seed",
+          "Description": "Seed\n\nint\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ce232f0a7c224b3ea0ac4d67c202c81d",
+          "Name": "var[]..[]",
+          "Description": "randomized list",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Shuffles a list, randomizing the order of its items based on the seed.\n\nListShuffle.SeededShuffle (list: var[]..[], seed: int = 1): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 1.0,
+      "InputValue": 0.0,
+      "Id": "0e7faacbceb141bb96047e9ed4209868",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3b8f8363ac104f13a0a6bab8ba3c2775",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces numeric values."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.TakeItems@var[]..[],int",
+      "Id": "67bf199fb9d54162981df8ccdd82de3a",
+      "Inputs": [
+        {
+          "Id": "2f29ab3b7e77404da3e18159a0914495",
+          "Name": "list",
+          "Description": "List to take from.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a2ef5a6addd24b758615a249821bd3fc",
+          "Name": "amount",
+          "Description": "Amount of items to take. If negative, items are taken from the end of the list.\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4dd8b8137c724cc397df5e0d1e71c8af",
+          "Name": "list",
+          "Description": "List of extracted items.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Fetches an amount of items from the start of the list.\n\nList.TakeItems (list: var[]..[], amount: int): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.CurtainPanel.Boundaries",
+      "Id": "de2fdf9156544f868b06012ad067573a",
+      "Inputs": [
+        {
+          "Id": "4c7a492d177140d2b46c4ae94fc2e9b9",
+          "Name": "curtainPanel",
+          "Description": "Revit.Elements.CurtainPanel",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e3e7c8545f234f7cb0aebd4425859562",
+          "Name": "PolyCurve[]",
+          "Description": "PolyCurve[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Gets curtain panel boundaries\n\nCurtainPanel.Boundaries: PolyCurve[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Surface.ByPatch@Autodesk.DesignScript.Geometry.Curve",
+      "Id": "6490a2b469b146da8d11f87fdac74a98",
+      "Inputs": [
+        {
+          "Id": "6befd9672998446c905eb25943896fd9",
+          "Name": "closedCurve",
+          "Description": "Curve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9e55715a90c24366b91eec84846a2e9c",
+          "Name": "Surface",
+          "Description": "Surface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Create a Surface by filling in the interior of a closed boundary defined by input Curves.\n\nSurface.ByPatch (closedCurve: Curve): Surface"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.Flatten@var[]..[],int",
+      "Id": "1b85ffcb8ad34a9aa9a9fb6f9eb70401",
+      "Inputs": [
+        {
+          "Id": "4c069316d8734b3786faa6ec1f5cd403",
+          "Name": "list",
+          "Description": "List to flatten.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ac9ee7e56f454084922cd6263ed05f5d",
+          "Name": "amt",
+          "Description": "Layers of nesting to remove.\n\nint\nDefault value : -1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6dab68fac24442fbab113aa0ed57855c",
+          "Name": "var[]..[]",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Flattens a nested list of lists by a certain amount.\n\nList.Flatten (list: var[]..[], amt: int = -1): var[]..[]"
+    },
+    {
+      "ConcreteType": "GenerativeDesign.Remember, GenerativeDesign.Dynamo.Nodes",
+      "Cache": "[\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -1585.7994393429915,\r\n      \"Y\": -23523.200605709811\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819152,\r\n      \"Y\": -23523.200605709819\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819152,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -1585.7994393429915,\r\n      \"Y\": -23523.200605709811,\r\n      \"Z\": 1219.1999999999996\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819152,\r\n      \"Y\": -23523.200605709819\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180858,\r\n      \"Y\": -23523.200605709822\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180858,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819152,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 1219.2\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180858,\r\n      \"Y\": -23523.200605709822\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180858,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 1219.2\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 1219.2\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.2005609618109,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 1219.2\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.4005609618089,\r\n      \"Y\": -23523.200605709833\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.4005609618089,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.2005609618109,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 1219.2\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.4005609618089,\r\n      \"Y\": -23523.200605709833\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618087,\r\n      \"Y\": -23523.200605709841\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.60056096181,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.4005609618089,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 1219.2\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618087,\r\n      \"Y\": -23523.200605709841\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.60056096181,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 1219.2\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 1219.2\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 1219.2\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961807,\r\n      \"Y\": -23523.200605709855\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961807,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 1219.2\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961807,\r\n      \"Y\": -23523.200605709855\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 12646.800558404593,\r\n      \"Y\": -23523.200605709855\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 12646.800558404593,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961807,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 1219.2\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819152,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819152,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -1585.7994393429915,\r\n      \"Y\": -23523.200605709811,\r\n      \"Z\": 2438.3999999999992\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -1585.7994393429915,\r\n      \"Y\": -23523.200605709811,\r\n      \"Z\": 1219.1999999999996\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180858,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180858,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819152,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819152,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 1219.2\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180858,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180858,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 1219.2\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618097,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 1219.2\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.2005609618109,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.2005609618109,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618097,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 1219.2\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.4005609618089,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.2005609618109,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.2005609618109,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 1219.2\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.60056096181,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.60056096181,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.4005609618089,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 1219.2\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.60056096181,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.60056096181,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 1219.2\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 1219.2\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 1219.2\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961807,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961807,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 1219.2\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 12646.800558404593,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 1219.2\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 12646.800558404593,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961807,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961807,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 1219.2\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819152,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819152,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -1585.7994393429915,\r\n      \"Y\": -23523.200605709811,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -1585.7994393429915,\r\n      \"Y\": -23523.200605709811,\r\n      \"Z\": 2438.3999999999992\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180858,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180858,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819152,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819152,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 2438.4\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180858,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180858,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 2438.4\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618097,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618097,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 2438.4\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.2005609618109,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.2005609618109,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618097,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618097,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 2438.4\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.2005609618109,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.2005609618109,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 2438.4\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.60056096181,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 2438.4\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.60056096181,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 2438.4\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 2438.4\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 2438.4\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961807,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961807,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 2438.4\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 12646.800558404593,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 2438.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 12646.800558404593,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961807,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961807,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 2438.4\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819152,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819152,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -1585.7994393429915,\r\n      \"Y\": -23523.200605709811,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -1585.7994393429915,\r\n      \"Y\": -23523.200605709811,\r\n      \"Z\": 3657.6000000000004\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180858,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180858,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819152,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819152,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 3657.6000000000004\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180858,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180858,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 3657.6000000000004\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618097,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 3657.6000000000004\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.2005609618109,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618097,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 3657.6000000000004\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.2005609618109,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 3657.6000000000004\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 3657.6000000000004\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 3657.6000000000004\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 3657.6000000000004\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 3657.6000000000004\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961807,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961807,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 3657.6000000000004\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 12646.800558404593,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 3657.6000000000004\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 12646.800558404593,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961807,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961807,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 3657.6000000000004\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819152,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819175,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -1585.7994393429915,\r\n      \"Y\": -23523.200605709811,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -1585.7994393429915,\r\n      \"Y\": -23523.200605709811,\r\n      \"Z\": 4876.8\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180858,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180858,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819175,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819152,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 4876.8\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180858,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180858,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 4876.8\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 4876.8\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 4876.8\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 4876.8\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 4876.8\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 4876.8\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 4876.8\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 4876.8\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961807,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961807,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 4876.8\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 12646.800558404593,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 4876.8\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 12646.800558404591,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961807,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961807,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 4876.8\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819175,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819203,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -1585.7994393429915,\r\n      \"Y\": -23523.200605709811,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -1585.7994393429915,\r\n      \"Y\": -23523.200605709811,\r\n      \"Z\": 6096.0\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180858,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.600560961808,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819203,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819175,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 6096.0\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.600560961808,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180858,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 6096.0\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 6096.0\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 6096.0\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 6096.0\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 6096.0\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 6096.0\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 6096.0\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 6096.0\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961807,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961805,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 6096.0\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 12646.800558404591,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 6096.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 12646.800558404591,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961805,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961807,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 6096.0\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819203,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819232,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -1585.7994393429915,\r\n      \"Y\": -23523.200605709811,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -1585.7994393429915,\r\n      \"Y\": -23523.200605709811,\r\n      \"Z\": 7315.2000000000007\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.600560961808,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180745,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819232,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819203,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 7315.2000000000007\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180745,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.600560961808,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 7315.2000000000007\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 7315.2000000000007\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 7315.2000000000007\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 7315.2000000000007\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 7315.2000000000007\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 7315.2000000000007\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 7315.2000000000007\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 7315.2000000000007\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961805,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961805,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 7315.2000000000007\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 12646.800558404591,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 7315.2000000000007\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 12646.800558404591,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961805,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961805,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 7315.2000000000007\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819232,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819232,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -1585.7994393429915,\r\n      \"Y\": -23523.200605709811,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -1585.7994393429915,\r\n      \"Y\": -23523.200605709811,\r\n      \"Z\": 8534.4\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180745,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180745,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819232,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819232,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 8534.4\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180745,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180745,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 8534.4\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 8534.4\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 8534.4\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 8534.4\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618123,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 8534.4\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618123,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 8534.4\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 8534.4\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 8534.4\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961805,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961805,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 8534.4\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 12646.800558404591,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 8534.4\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 12646.800558404593,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961805,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961805,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 8534.4\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819232,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.5994390381926,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -1585.7994393429915,\r\n      \"Y\": -23523.200605709811,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -1585.7994393429915,\r\n      \"Y\": -23523.200605709811,\r\n      \"Z\": 9753.6\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180745,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.600560961808,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.5994390381926,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.59943903819232,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 9753.6\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618076,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.600560961808,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.60056096180745,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 9753.6\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618076,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618085,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 9753.6\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 9753.6\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 9753.6\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618123,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 9753.6\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618123,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 9753.6\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 9753.6\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 9753.6\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961805,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961805,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 9753.6\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 12646.800558404593,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 9753.6\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 12646.800558404593,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961805,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961805,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 9753.6\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.5994390381926,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.5994390381926,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -1585.7994393429915,\r\n      \"Y\": -23523.200605709811,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -1585.7994393429915,\r\n      \"Y\": -23523.200605709811,\r\n      \"Z\": 10972.800000000001\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.600560961808,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.600560961808,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.5994390381926,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": -366.5994390381926,\r\n      \"Y\": -23523.200605709819,\r\n      \"Z\": 10972.800000000001\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618076,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618076,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.600560961808,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 852.600560961808,\r\n      \"Y\": -23523.200605709822,\r\n      \"Z\": 10972.800000000001\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618076,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 2071.8005609618076,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 10972.800000000001\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 3291.0005609618088,\r\n      \"Y\": -23523.200605709826,\r\n      \"Z\": 10972.800000000001\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.4005609618089,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 4510.20056096181,\r\n      \"Y\": -23523.20060570983,\r\n      \"Z\": 10972.800000000001\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.60056096181,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.4005609618089,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 5729.40056096181,\r\n      \"Y\": -23523.200605709833,\r\n      \"Z\": 10972.800000000001\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.60056096181,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 6948.6005609618105,\r\n      \"Y\": -23523.200605709841,\r\n      \"Z\": 10972.800000000001\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 8167.80056096181,\r\n      \"Y\": -23523.200605709844,\r\n      \"Z\": 10972.800000000001\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 9387.00056096181,\r\n      \"Y\": -23523.200605709848,\r\n      \"Z\": 10972.800000000001\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961805,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961805,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 10606.20056096181,\r\n      \"Y\": -23523.200605709852,\r\n      \"Z\": 10972.800000000001\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ],\r\n  [\r\n    {\r\n  \"ConcreteType\": \"PrimitiveGeometry.Geo.Polyline, PrimitiveGeometry\",\r\n  \"Points\": [\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 12646.800558404593,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 10972.800000000001\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 12646.800558404593,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961805,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 11400.0\r\n    },\r\n    {\r\n      \"ConcreteType\": \"PrimitiveGeometry.Geo.Point, PrimitiveGeometry\",\r\n      \"X\": 11825.400560961805,\r\n      \"Y\": -23523.200605709855,\r\n      \"Z\": 10972.800000000001\r\n    }\r\n  ],\r\n  \"Closed\": true\r\n}\r\n  ]\r\n]",
+      "NodeType": "ExtensionNode",
+      "Id": "fd500a63457949ec86296822f8048e5f",
+      "Inputs": [
+        {
+          "Id": "777e011921c14c1bb69dede107606581",
+          "Name": ">",
+          "Description": "Data to sample and store in the file.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b3d8c861bfe046b1ab44b93c4b7da47e",
+          "Name": ">",
+          "Description": "Data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Store data passing through this node to the Dynamo file. Return the stored data if the input is null."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.GetParameterValueByName@string",
+      "Id": "10d1a844efd6474d925d0462e0426943",
+      "Inputs": [
+        {
+          "Id": "0fcd995cab52480681bef064d96dbf64",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4003ad6e69824388be75997da208dfc6",
+          "Name": "parameterName",
+          "Description": "The name of the parameter whose value you want to obtain.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7020480675a141d4a819c0989dfeaa55",
+          "Name": "var[]..[]",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the value of one of the element's parameters.\n\nElement.GetParameterValueByName (parameterName: string): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"Material\";",
+      "Id": "39226ce2022446d08983672f8530f99b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "81ed71646a7547bb92894b69ad9b54de",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Material.Color",
+      "Id": "ed3c932acce64c87a861eecd5fc73c7f",
+      "Inputs": [
+        {
+          "Id": "bbea6fbe2f6e4b71baae285288f44f6d",
+          "Name": "material",
+          "Description": "Revit.Elements.Material",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "62a9dad02c9d491ca2bf2d7f1dc39eb7",
+          "Name": "Color",
+          "Description": "Color",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get color\n\nMaterial.Color: Color"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DesignScript.Builtin.Dictionary.ValueAtKey@string",
+      "Id": "b3614ca48e614c58900c2604c71119b3",
+      "Inputs": [
+        {
+          "Id": "c78719a3557e473a896eb3483cf249f9",
+          "Name": "dictionary",
+          "Description": "DesignScript.Builtin.Dictionary",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9852dceb2c8742bea7204ce2304a3933",
+          "Name": "key",
+          "Description": "The key in the Dictionary to obtain.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3d2302985ed244a797dac7ccf8b54e90",
+          "Name": "value",
+          "Description": "The value at the specified key or null if it is not set.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Obtain the value at a specified key\n\nDictionary.ValueAtKey (key: string): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Modifiers.GeometryColor.ByGeometryColor@Autodesk.DesignScript.Geometry.Geometry,DSCore.Color",
+      "Id": "36de35e861f5481ba8964020d15a3560",
+      "Inputs": [
+        {
+          "Id": "adfa30fbc0c34288bbb67c1b78f62d06",
+          "Name": "geometry",
+          "Description": "The geometry to which you would like to apply color.\n\nGeometry",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2969b3f606fa4d01b17fb0ba4d01c628",
+          "Name": "color",
+          "Description": "The color.\n\nColor",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7d124571b93c45bfbc7471bb90ed293c",
+          "Name": "GeometryColor",
+          "Description": "A Display object.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Display geometry using a color.\n\nGeometryColor.ByGeometryColor (geometry: Geometry, color: Color): GeometryColor"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.Count@var[]..[]",
+      "Id": "640167ff89f94705a5fe26c36ace4c83",
+      "Inputs": [
+        {
+          "Id": "24280cfdc8a64024b13ec00e42cca342",
+          "Name": "list",
+          "Description": "List to get the item count of.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "876e3956db4a489d80e31d9a454dc858",
+          "Name": "count",
+          "Description": "List length.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the number of items stored in the given list.\n\nList.Count (list: var[]..[]): int"
+    },
+    {
+      "ConcreteType": "GenerativeDesign.Remember, GenerativeDesign.Dynamo.Nodes",
+      "Cache": "120",
+      "NodeType": "ExtensionNode",
+      "Id": "bca48c41c0264c0ca00cf2dbf00e6ba0",
+      "Inputs": [
+        {
+          "Id": "2d7e16589a4b47ff9fb3c523fa8318f4",
+          "Name": ">",
+          "Description": "Data to sample and store in the file.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c0c259cb69e744419f156bfb51296d2b",
+          "Name": ">",
+          "Description": "Data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Store data passing through this node to the Dynamo file. Return the stored data if the input is null."
+    },
+    {
+      "ConcreteType": "GenerativeDesign.Remember, GenerativeDesign.Dynamo.Nodes",
+      "Cache": "[\r\n  434102,\r\n  434106,\r\n  434104\r\n]",
+      "NodeType": "ExtensionNode",
+      "Id": "154b26024bd54972b2c47736b46f9582",
+      "Inputs": [
+        {
+          "Id": "01afd7b4aaf64616a184b442994d4a69",
+          "Name": ">",
+          "Description": "Data to sample and store in the file.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d2c7eeea584a435c86f1bae949d60b6a",
+          "Name": ">",
+          "Description": "Data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Store data passing through this node to the Dynamo file. Return the stored data if the input is null."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.Id",
+      "Id": "3b720524890f4ac1ba044dcaf8de52b5",
+      "Inputs": [
+        {
+          "Id": "4dc7f09fd2e6486da896e0b5f81e2253",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "68d8fdc1a4df4a9b9550caae91349d43",
+          "Name": "int",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the Element Id for this element\n\nElement.Id: int"
+    },
+    {
+      "ConcreteType": "GenerativeDesign.Remember, GenerativeDesign.Dynamo.Nodes",
+      "Cache": "[\r\n  {\r\n    \"ConcreteType\": \"DSCore.Color, DSCoreNodes\",\r\n    \"R\": 119,\r\n    \"G\": 119,\r\n    \"B\": 114,\r\n    \"A\": 255\r\n  },\r\n  {\r\n    \"ConcreteType\": \"DSCore.Color, DSCoreNodes\",\r\n    \"R\": 0,\r\n    \"G\": 142,\r\n    \"B\": 214,\r\n    \"A\": 255\r\n  },\r\n  {\r\n    \"ConcreteType\": \"DSCore.Color, DSCoreNodes\",\r\n    \"R\": 255,\r\n    \"G\": 255,\r\n    \"B\": 255,\r\n    \"A\": 255\r\n  }\r\n]",
+      "NodeType": "ExtensionNode",
+      "Id": "a992c99faa324b0da22041dd57c40fa8",
+      "Inputs": [
+        {
+          "Id": "e896caf810004d8886176994486905b0",
+          "Name": ">",
+          "Description": "Data to sample and store in the file.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "bb5c723826e945a1b42c554af7d2776e",
+          "Name": ">",
+          "Description": "Data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Store data passing through this node to the Dynamo file. Return the stored data if the input is null."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DesignScript.Builtin.Dictionary.ByKeysValues@string[],var[]..[]",
+      "Id": "95b5294de1954c288ebaaa3f85835ff8",
+      "Inputs": [
+        {
+          "Id": "96d7218c7dd946ad9d2803916b7b191f",
+          "Name": "keys",
+          "Description": "The string keys of the Dictionary\n\nstring[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "14fc9c952e3647f390bda59148bc8a85",
+          "Name": "values",
+          "Description": "The values of the Dictionary\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "188fb5cde817421eb0b7725bda83bf4a",
+          "Name": "dictionary",
+          "Description": "The result Dictionary",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Produces a Dictionary with the supplied keys and values. The number of entries is the shorter of keys or values.\n\nDictionary.ByKeysValues (keys: string[], values: var[]..[]): Dictionary"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.FromObject, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "2f1e7d7f49574aa199c08f055884d078",
+      "Inputs": [
+        {
+          "Id": "91de502a3acf4eb19bc02c0fa94818a6",
+          "Name": "obj",
+          "Description": "Object to be serialized",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c9d1bbeccd8a475d99c29c91c918613e",
+          "Name": "str",
+          "Description": "Result of math computation",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Convert an object to a string representation."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.FromObject, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "942b34fcdd7849938ac281cd38636d81",
+      "Inputs": [
+        {
+          "Id": "250b4e138e0b49c3a61743eeaa2adcfd",
+          "Name": "obj",
+          "Description": "Object to be serialized",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c77d783ad8ac475a8d5f0f4fcdf9a689",
+          "Name": "str",
+          "Description": "Result of math computation",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Convert an object to a string representation."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "49a1293f-9a8b-4adf-a093-9815adf5e109",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "7805317a03454b2babe0b0abfc4e5199",
+      "Inputs": [
+        {
+          "Id": "df1bd253bbe34250a10314f49e11c0cf",
+          "Name": "familyInstance",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bef3cc10193643a48c511eaa1359477a",
+          "Name": "familyType",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5bc08c26ac3447f39de1104ac06c78d2",
+          "Name": "familyInstance",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "78083d469493409598ae789ec775a0bf",
+          "Name": "success",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Changes the family type of a given family instance to the specified type"
+    },
+    {
+      "ConcreteType": "GenerativeDesign.Gate, GenerativeDesign.Dynamo.Nodes",
+      "InputValue": false,
+      "NodeType": "ExtensionNode",
+      "Id": "7b56c2d2a95a44fe9732479ff4fb54eb",
+      "Inputs": [
+        {
+          "Id": "f6c772d863ae4b7095e43feb19d2d57d",
+          "Name": ">",
+          "Description": "Data to pass to a downstream node with gated controls.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c43b8fd40c1c4d61a3ab78088c13c66b",
+          "Name": ">",
+          "Description": "Data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Block data passing through this node to downstream nodes. Node returns the input data only if the node value is set to Open.  \r\n\r\nIn Generative Design workflows, this node should be used to control and block the behavior of nodes that will place elements in Revit"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "Revit.Elements.ElementSelector.ByElementId(id);",
+      "Id": "7464a9e8f5604157b4f22dbea49d5d04",
+      "Inputs": [
+        {
+          "Id": "6f8feead53af45b0b3f8b274ab2e5e2c",
+          "Name": "id",
+          "Description": "id",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5dc728d9615c482ca602b4dde2dbbba6",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "5d22d3a0584a4f60865cff1abaceefb5",
+      "Inputs": [
+        {
+          "Id": "9a72f4dd4c2c4ae99f1392dfa2199572",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6456fbf2326d4f10b056e2eb8bb41abb",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "3863c75c8ac64f78832a16275547d7fd",
+      "End": "1898242a824f4a399b07dee9e848c01b",
+      "Id": "834df70c25db461197bdf03c77353b9c"
+    },
+    {
+      "Start": "028f8c2f88e145b2af66a7c494fc8eb7",
+      "End": "37a63a90f9054784abd401b4b91e47fa",
+      "Id": "5b476a85c1cb48f598525953d542ada1"
+    },
+    {
+      "Start": "028f8c2f88e145b2af66a7c494fc8eb7",
+      "End": "4c7a492d177140d2b46c4ae94fc2e9b9",
+      "Id": "f147bf41409f4700a83cc8604688cccd"
+    },
+    {
+      "Start": "d9e16126755e46c3a351ba73a270f36f",
+      "End": "009c0a7e4be744edbb44778609995bbe",
+      "Id": "44dcf6b920ee4f0dbbae4824dfb9d342"
+    },
+    {
+      "Start": "1b0ba051817445a1b4b0669e73a75abf",
+      "End": "b99c99a0c3b84187b3ff3a1790877370",
+      "Id": "a689e7c3368d4f2e937f64e16885ef5c"
+    },
+    {
+      "Start": "b41866b8c4ef4bdca4feae5a8fd92cfe",
+      "End": "b1c641cfbf71459e8b7558bb33872606",
+      "Id": "6ba667031fa44d828ca86ce490520a91"
+    },
+    {
+      "Start": "3527860ec5fa4419bc7cd9a5575595aa",
+      "End": "7ad5e6b62be3437bba3bb837ff89b8ab",
+      "Id": "177156520a084af88d86c6a4ce33cfa4"
+    },
+    {
+      "Start": "3527860ec5fa4419bc7cd9a5575595aa",
+      "End": "df1bd253bbe34250a10314f49e11c0cf",
+      "Id": "3726e2101f5a418ab2f844b6f95b2c5a"
+    },
+    {
+      "Start": "375e59a9540d48e9abb291de503fb319",
+      "End": "7091f66d4b4a4544903cb82d980aedb3",
+      "Id": "40210311a3da4c8c96709b0b86cdc46f"
+    },
+    {
+      "Start": "d3fcd1462af64c2aa02718e15a7db041",
+      "End": "0fcd995cab52480681bef064d96dbf64",
+      "Id": "c0463259902043cfbcdf694cf677be0b"
+    },
+    {
+      "Start": "d3fcd1462af64c2aa02718e15a7db041",
+      "End": "4dc7f09fd2e6486da896e0b5f81e2253",
+      "Id": "ef6c012ce90f4f4f9b486fd32f9aacb4"
+    },
+    {
+      "Start": "1cc7b89f72744f449c96e602260df0e0",
+      "End": "2d7e16589a4b47ff9fb3c523fa8318f4",
+      "Id": "8427a41b851f45a3aa400578ff979da4"
+    },
+    {
+      "Start": "ce232f0a7c224b3ea0ac4d67c202c81d",
+      "End": "2f29ab3b7e77404da3e18159a0914495",
+      "Id": "bf523096e16d4dd9a781b533d32697d7"
+    },
+    {
+      "Start": "3b8f8363ac104f13a0a6bab8ba3c2775",
+      "End": "5bcea0c113b6465da2a42e20e2b7a2ea",
+      "Id": "1495dfe58f62443facf1985271bdcc66"
+    },
+    {
+      "Start": "4dd8b8137c724cc397df5e0d1e71c8af",
+      "End": "250b4e138e0b49c3a61743eeaa2adcfd",
+      "Id": "09658e2163504a6b9720fb8d1e342a30"
+    },
+    {
+      "Start": "4dd8b8137c724cc397df5e0d1e71c8af",
+      "End": "f6c772d863ae4b7095e43feb19d2d57d",
+      "Id": "a9390900feb64d84b99159013505c7e1"
+    },
+    {
+      "Start": "e3e7c8545f234f7cb0aebd4425859562",
+      "End": "777e011921c14c1bb69dede107606581",
+      "Id": "c7f9cfcbd83147fc83615d842acca450"
+    },
+    {
+      "Start": "9e55715a90c24366b91eec84846a2e9c",
+      "End": "4c069316d8734b3786faa6ec1f5cd403",
+      "Id": "4eb0ef9d8ace4cedbcab82be9abc4850"
+    },
+    {
+      "Start": "6dab68fac24442fbab113aa0ed57855c",
+      "End": "adfa30fbc0c34288bbb67c1b78f62d06",
+      "Id": "2202478c5d164fd886553548ad80c455"
+    },
+    {
+      "Start": "b3d8c861bfe046b1ab44b93c4b7da47e",
+      "End": "6befd9672998446c905eb25943896fd9",
+      "Id": "7412d889b4c34211a4dcdb60d0f62765"
+    },
+    {
+      "Start": "7020480675a141d4a819c0989dfeaa55",
+      "End": "bbea6fbe2f6e4b71baae285288f44f6d",
+      "Id": "38f90a39f6d547d19976c09c24b2ccf8"
+    },
+    {
+      "Start": "81ed71646a7547bb92894b69ad9b54de",
+      "End": "4003ad6e69824388be75997da208dfc6",
+      "Id": "cbed281e97ba49cfbfa92ce0db34f5e0"
+    },
+    {
+      "Start": "62a9dad02c9d491ca2bf2d7f1dc39eb7",
+      "End": "e896caf810004d8886176994486905b0",
+      "Id": "25fe33a2dc1f41e295743acf6a74999d"
+    },
+    {
+      "Start": "3d2302985ed244a797dac7ccf8b54e90",
+      "End": "2969b3f606fa4d01b17fb0ba4d01c628",
+      "Id": "1592fc543df0450c98571c44d02e8c2c"
+    },
+    {
+      "Start": "7d124571b93c45bfbc7471bb90ed293c",
+      "End": "24280cfdc8a64024b13ec00e42cca342",
+      "Id": "69833a7e4e78452b9a3256d77d055a5f"
+    },
+    {
+      "Start": "876e3956db4a489d80e31d9a454dc858",
+      "End": "9a72f4dd4c2c4ae99f1392dfa2199572",
+      "Id": "9ce1af1e0b4549f2bcf7963b1ae83a53"
+    },
+    {
+      "Start": "c0c259cb69e744419f156bfb51296d2b",
+      "End": "2f0e78f4e53a4407899837649e43bc26",
+      "Id": "2e44919f73774026bf889795c4edcdee"
+    },
+    {
+      "Start": "c0c259cb69e744419f156bfb51296d2b",
+      "End": "a2ef5a6addd24b758615a249821bd3fc",
+      "Id": "7c93d0640d32451c82dfdecf8f358b85"
+    },
+    {
+      "Start": "d2c7eeea584a435c86f1bae949d60b6a",
+      "End": "4db5af6b040f421083b149e144cb0f2e",
+      "Id": "debf0a517d5f41dfa4752667722fb07f"
+    },
+    {
+      "Start": "d2c7eeea584a435c86f1bae949d60b6a",
+      "End": "91de502a3acf4eb19bc02c0fa94818a6",
+      "Id": "bf00f4af0598457f8d940d1ff18e1e4e"
+    },
+    {
+      "Start": "68d8fdc1a4df4a9b9550caae91349d43",
+      "End": "01afd7b4aaf64616a184b442994d4a69",
+      "Id": "64ebd8bb22734d29b3b5f47fe66f4d8c"
+    },
+    {
+      "Start": "bb5c723826e945a1b42c554af7d2776e",
+      "End": "14fc9c952e3647f390bda59148bc8a85",
+      "Id": "d0151e0ac4524231b4069d752c14e41b"
+    },
+    {
+      "Start": "188fb5cde817421eb0b7725bda83bf4a",
+      "End": "c78719a3557e473a896eb3483cf249f9",
+      "Id": "e6a15018df394b03989fc4c8ec0e2fd3"
+    },
+    {
+      "Start": "c9d1bbeccd8a475d99c29c91c918613e",
+      "End": "96d7218c7dd946ad9d2803916b7b191f",
+      "Id": "25a4f96908f3404b8a707369321edd5c"
+    },
+    {
+      "Start": "c77d783ad8ac475a8d5f0f4fcdf9a689",
+      "End": "9852dceb2c8742bea7204ce2304a3933",
+      "Id": "76af7ef32a29420d839c39e49e526665"
+    },
+    {
+      "Start": "c43b8fd40c1c4d61a3ab78088c13c66b",
+      "End": "6f8feead53af45b0b3f8b274ab2e5e2c",
+      "Id": "f5ba03e1dbe74a85b6b3c284479a0d55"
+    },
+    {
+      "Start": "5dc728d9615c482ca602b4dde2dbbba6",
+      "End": "bef3cc10193643a48c511eaa1359477a",
+      "Id": "8754cafa53a14f54b6388900714fbb3a"
+    }
+  ],
+  "Dependencies": [
+    "49a1293f-9a8b-4adf-a093-9815adf5e109"
+  ],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "GenerativeDesign.Revit",
+      "Version": "1.6.4.0",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "218ec6771f99436cb9e3e63bb68aaf8f"
+      ]
+    },
+    {
+      "Name": "Refinery Toolkit",
+      "Version": "1.1.1",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "511f048da15c4ebe8196a59c57f63020"
+      ]
+    },
+    {
+      "Name": "GenerativeDesign",
+      "Version": "1.6.4.0",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "fd500a63457949ec86296822f8048e5f",
+        "bca48c41c0264c0ca00cf2dbf00e6ba0",
+        "154b26024bd54972b2c47736b46f9582",
+        "a992c99faa324b0da22041dd57c40fa8",
+        "7b56c2d2a95a44fe9732479ff4fb54eb"
+      ]
+    },
+    {
+      "Name": "Clockwork for Dynamo 2.x",
+      "Version": "2.3.0",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "7805317a03454b2babe0b0abfc4e5199"
+      ]
+    }
+  ],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.1.8786",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -9179.9076502434727,
+      "EyeY": 19019.92231064324,
+      "EyeZ": 37390.74298887582,
+      "LookX": 14710.40850473566,
+      "LookY": -13319.92231064324,
+      "LookZ": -13867.54181700082,
+      "UpX": 0.26076482454467187,
+      "UpY": 0.93358042649720263,
+      "UpZ": -0.24582370418958677
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Feature Wall",
+        "Id": "218ec6771f99436cb9e3e63bb68aaf8f",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -361.78984179870235,
+        "Y": 808.70857804513969
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "CurtainPanel.ByElement",
+        "Id": "2c1dd3b3f12645afa3c0ac741ed05155",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 271.536453147864,
+        "Y": 769.48799733703834
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select System Panels to Use",
+        "Id": "922fe2b0cde84fd885c336e1db81991e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -809.113104332669,
+        "Y": 1226.37994301361
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "CurtainPanel.AsFamilyInstance",
+        "Id": "e5b9d65b6b56470a9571f148bfd07488",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 625.349146068161,
+        "Y": 769.48799733703834
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.Cycle",
+        "Id": "f10d0058b8b24e72917f7f91e799775b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1441.231532142692,
+        "Y": 859.04038833518291
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List Create",
+        "Id": "da8c2991cf174cc39a50eaad012ac856",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -379.616978666615,
+        "Y": 1220.88434003885
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.Count",
+        "Id": "13524523756f4fcdbc35c954aac1a33a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1089.4227218097508,
+        "Y": 990.08387724354384
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ListShuffle.SeededShuffle",
+        "Id": "511f048da15c4ebe8196a59c57f63020",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1645.469149377323,
+        "Y": 908.70043799645794
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Option",
+        "Id": "0e7faacbceb141bb96047e9ed4209868",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -361.78984179870235,
+        "Y": 944.83891979535372
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.TakeItems",
+        "Id": "67bf199fb9d54162981df8ccdd82de3a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1881.6683948061163,
+        "Y": 963.2167461169214
+      },
+      {
+        "ShowGeometry": false,
+        "Name": "CurtainPanel.Boundaries",
+        "Id": "de2fdf9156544f868b06012ad067573a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1089.1800368604454,
+        "Y": 681.61027206398023
+      },
+      {
+        "ShowGeometry": false,
+        "Name": "Surface.ByPatch",
+        "Id": "6490a2b469b146da8d11f87fdac74a98",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1497.3750991367654,
+        "Y": 681.61027206398023
+      },
+      {
+        "ShowGeometry": false,
+        "Name": "List.Flatten",
+        "Id": "1b85ffcb8ad34a9aa9a9fb6f9eb70401",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1792.1795640379555,
+        "Y": 681.61027206398023
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Data.Remember",
+        "Id": "fd500a63457949ec86296822f8048e5f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1361.4289987419054,
+        "Y": 681.61027206398023
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.GetParameterValueByName",
+        "Id": "10d1a844efd6474d925d0462e0426943",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -165.91842494310163,
+        "Y": 1429.4704058249674
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "39226ce2022446d08983672f8530f99b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -310.59926209654873,
+        "Y": 1479.8404761536617
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Material.Color",
+        "Id": "ed3c932acce64c87a861eecd5fc73c7f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 141.65558635867842,
+        "Y": 1429.4704058249674
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Dictionary.ValueAtKey",
+        "Id": "b3614ca48e614c58900c2604c71119b3",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2425.1112189195787,
+        "Y": 1168.3439052543301
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "GeometryColor.ByGeometryColor",
+        "Id": "36de35e861f5481ba8964020d15a3560",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2689.32778794708,
+        "Y": 1072.8078028561602
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.Count",
+        "Id": "640167ff89f94705a5fe26c36ace4c83",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3147.5007066740932,
+        "Y": 986.62660678000668
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Data.Remember",
+        "Id": "bca48c41c0264c0ca00cf2dbf00e6ba0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1294.0819380661378,
+        "Y": 990.08387724354384
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Data.Remember",
+        "Id": "154b26024bd54972b2c47736b46f9582",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 392.781924096351,
+        "Y": 1220.88434003885
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.Id",
+        "Id": "3b720524890f4ac1ba044dcaf8de52b5",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 146.232402904478,
+        "Y": 1220.88434003885
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Data.Remember",
+        "Id": "a992c99faa324b0da22041dd57c40fa8",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 400.61977117660865,
+        "Y": 1429.3710723737031
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Dictionary.ByKeysValues",
+        "Id": "95b5294de1954c288ebaaa3f85835ff8",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 771.872522557064,
+        "Y": 1401.6553277157279
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String from Object",
+        "Id": "2f1e7d7f49574aa199c08f055884d078",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 606.60489780766534,
+        "Y": 1335.8375867360708
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String from Object",
+        "Id": "942b34fcdd7849938ac281cd38636d81",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2260.2635159890142,
+        "Y": 1217.6560545339678
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "FamilyInstance.SetType",
+        "Id": "7805317a03454b2babe0b0abfc4e5199",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3819.7304689782827,
+        "Y": 755.38412600356742
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Data.Gate",
+        "Id": "7b56c2d2a95a44fe9732479ff4fb54eb",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3147.7522671992479,
+        "Y": 833.72262488008573
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "7464a9e8f5604157b4f22dbea49d5d04",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3327.8584050028476,
+        "Y": 833.72262488008573
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Amount of Panels Modified",
+        "Id": "5d22d3a0584a4f60865cff1abaceefb5",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "X": 3368.0721640616534,
+        "Y": 986.62660678000668
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "4dbcd780078049cea2640f679b5f798f",
+        "Title": "Dynamo Template",
+        "Nodes": [
+          "13c464ec3777466db0b82104a509a360",
+          "5ef6755b71e54c6ead30ef97dc29d3ac"
+        ],
+        "Left": 518.216612413185,
+        "Top": 381.137649796498,
+        "Width": 1224.481341828905,
+        "Height": 97.87278656541298,
+        "FontSize": 36.0,
+        "InitialTop": 434.137649796498,
+        "InitialHeight": 140.87278656541298,
+        "TextblockHeight": 43.0,
+        "Background": "#FF48B9FF"
+      },
+      {
+        "Id": "10327be57a37426090a128a52194b09c",
+        "Title": "Input",
+        "Nodes": [
+          "6d760212d9314eb9b2bcc73ec0459155"
+        ],
+        "Left": 665.877214302755,
+        "Top": 490.93824117330996,
+        "Width": 177.0,
+        "Height": 83.0,
+        "FontSize": 24.0,
+        "InitialTop": 529.93824117331,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 29.0,
+        "Background": "#FFB0C4DE"
+      },
+      {
+        "Id": "2171a8aaf57941cc916e7164df186762",
+        "Title": "Background",
+        "Nodes": [
+          "7a94d1e5e5fa4c92ae1f2e0623bdd972"
+        ],
+        "Left": 516.743683252872,
+        "Top": 490.93824117330905,
+        "Width": 136.82333333333332,
+        "Height": 83.0,
+        "FontSize": 24.0,
+        "InitialTop": 529.938241173309,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 29.0,
+        "Background": "#FFD3D3D3"
+      },
+      {
+        "Id": "4f08045c9645438a8c79a76c373bb7f6",
+        "Title": "Control",
+        "Nodes": [
+          "aaba4e690bea4a71b07594fd1bc4be95"
+        ],
+        "Left": 857.81592716415,
+        "Top": 490.93824117330905,
+        "Width": 192.0,
+        "Height": 83.0,
+        "FontSize": 24.0,
+        "InitialTop": 529.938241173309,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 29.0,
+        "Background": "#FF90EE90"
+      },
+      {
+        "Id": "d7bac7a20a344282b789b2be6b617090",
+        "Title": "To Revit",
+        "Nodes": [
+          "325e936c51164767a8ffce0ea942fc73"
+        ],
+        "Left": 1060.5873646429,
+        "Top": 491.62373498679494,
+        "Width": 181.0,
+        "Height": 83.0,
+        "FontSize": 24.0,
+        "InitialTop": 530.623734986795,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 29.0,
+        "Background": "#FFFFA07A"
+      },
+      {
+        "Id": "8a3d9717e1fb44a9bdb7cde4a1021b14",
+        "Title": "Annotation",
+        "Nodes": [
+          "318e3ef7b36c456ca43ee43a6a4f9a7b"
+        ],
+        "Left": 1250.71668449816,
+        "Top": 492.132762605449,
+        "Width": 141.0,
+        "Height": 83.0,
+        "FontSize": 24.0,
+        "InitialTop": 531.132762605449,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 29.0,
+        "Background": "#FF87CEFA"
+      },
+      {
+        "Id": "87b354078d9147ec8646afb5bec4217e",
+        "Title": "Info",
+        "Nodes": [
+          "71f8955f622b4827b66894009f0d28b1"
+        ],
+        "Left": 1399.00441571263,
+        "Top": 492.086886279586,
+        "Width": 165.0,
+        "Height": 83.0,
+        "FontSize": 24.0,
+        "InitialTop": 531.086886279586,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 29.0,
+        "Background": "#FFFFE4C4"
+      },
+      {
+        "Id": "568683e920464bd4b2781a96335bf088",
+        "Title": "Other",
+        "Nodes": [
+          "1584213ae7994948b7a140293ea1d988"
+        ],
+        "Left": 1575.60242895621,
+        "Top": 492.15958176775496,
+        "Width": 166.0,
+        "Height": 83.0,
+        "FontSize": 24.0,
+        "InitialTop": 531.159581767755,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 29.0,
+        "Background": "#FF66CDAA"
+      },
+      {
+        "Id": "eca3cf2f7c0347b1b605f60a04d62eed",
+        "Title": "License",
+        "Nodes": [
+          "7d2ea8de505c40be933ee8877f0b8a09"
+        ],
+        "Left": 186.78691094722842,
+        "Top": 380.91890411992028,
+        "Width": 320.0,
+        "Height": 314.0,
+        "FontSize": 24.0,
+        "InitialTop": 419.91890411992028,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 29.0,
+        "Background": "#FF87CEFA"
+      },
+      {
+        "Id": "7489faf47658409290dea6f7a4e2b887",
+        "Title": "Get Curtain Panels and Convert to Family Instances",
+        "Nodes": [
+          "2c1dd3b3f12645afa3c0ac741ed05155",
+          "e5b9d65b6b56470a9571f148bfd07488"
+        ],
+        "Left": 261.536453147864,
+        "Top": 730.48799733703834,
+        "Width": 658.812692920297,
+        "Height": 132.0,
+        "FontSize": 24.0,
+        "InitialTop": 769.48799733703834,
+        "InitialHeight": 145.0,
+        "TextblockHeight": 29.0,
+        "Background": "#FFDCDCDC"
+      },
+      {
+        "Id": "1613d10d12aa4bac980a92f1c67b0a4e",
+        "Title": "User Inputs",
+        "Nodes": [
+          "218ec6771f99436cb9e3e63bb68aaf8f",
+          "0e7faacbceb141bb96047e9ed4209868"
+        ],
+        "Left": -371.78984179870235,
+        "Top": 769.70857804513969,
+        "Width": 319.0,
+        "Height": 243.13034175021403,
+        "FontSize": 24.0,
+        "InitialTop": 808.70857804513969,
+        "InitialHeight": 281.13034175021403,
+        "TextblockHeight": 29.0,
+        "Background": "#FFB0C4DE"
+      },
+      {
+        "Id": "3fbd70ecbe5c4e7aab2bd4e7886348fb",
+        "Title": "Panel types to use",
+        "Nodes": [
+          "922fe2b0cde84fd885c336e1db81991e",
+          "da8c2991cf174cc39a50eaad012ac856"
+        ],
+        "Left": -819.113104332669,
+        "Top": 1181.88434003885,
+        "Width": 569.496125666054,
+        "Height": 184.0,
+        "FontSize": 24.0,
+        "InitialTop": 1222.55372980295,
+        "InitialHeight": 150.495602974759,
+        "TextblockHeight": 29.0,
+        "Background": "#FF90EE90"
+      },
+      {
+        "Id": "56b32b6bbc334e4c91931ffde0f28724",
+        "Title": "Build a color lookup dictionary based on the id of the panel",
+        "Nodes": [
+          "10d1a844efd6474d925d0462e0426943",
+          "39226ce2022446d08983672f8530f99b",
+          "ed3c932acce64c87a861eecd5fc73c7f"
+        ],
+        "Left": -320.59926209654873,
+        "Top": 1390.4704058249674,
+        "Width": 673.25484845522715,
+        "Height": 182.37007032869428,
+        "FontSize": 24.0,
+        "InitialTop": 1429.4704058249674,
+        "InitialHeight": 195.37007032869428,
+        "TextblockHeight": 29.0,
+        "Background": "#FF90EE90"
+      },
+      {
+        "Id": "c28c116e8b7b4e4499b0817b01fea806",
+        "Title": "Shuffle up the id numbers for later use",
+        "Nodes": [
+          "f10d0058b8b24e72917f7f91e799775b",
+          "13524523756f4fcdbc35c954aac1a33a",
+          "511f048da15c4ebe8196a59c57f63020",
+          "67bf199fb9d54162981df8ccdd82de3a",
+          "bca48c41c0264c0ca00cf2dbf00e6ba0"
+        ],
+        "Left": 1079.4227218097508,
+        "Top": 820.04038833518291,
+        "Width": 996.24567299636556,
+        "Height": 263.04348890836093,
+        "FontSize": 24.0,
+        "InitialTop": 859.04038833518291,
+        "InitialHeight": 276.04348890836081,
+        "TextblockHeight": 29.0,
+        "Background": "#FFDCDCDC"
+      },
+      {
+        "Id": "4b750d25eee7493db0177544da843cc9",
+        "Title": "Set the types",
+        "Nodes": [
+          "7805317a03454b2babe0b0abfc4e5199",
+          "7464a9e8f5604157b4f22dbea49d5d04",
+          "7b56c2d2a95a44fe9732479ff4fb54eb"
+        ],
+        "Left": 3137.7522671992479,
+        "Top": 716.38412600356742,
+        "Width": 986.97820177903486,
+        "Height": 210.33849887651832,
+        "FontSize": 24.0,
+        "InitialTop": 755.38412600356742,
+        "InitialHeight": 149.0,
+        "TextblockHeight": 29.0,
+        "Background": "#FFFFA07A"
+      },
+      {
+        "Id": "e6f41fadd3e44645b91fe24b19993cc5",
+        "Title": "Output",
+        "Nodes": [
+          "640167ff89f94705a5fe26c36ace4c83",
+          "5d22d3a0584a4f60865cff1abaceefb5"
+        ],
+        "Left": 3137.5007066740932,
+        "Top": 947.62660678000668,
+        "Width": 467.57145738756026,
+        "Height": 148.0,
+        "FontSize": 24.0,
+        "InitialTop": 986.62660678000668,
+        "InitialHeight": 124.0,
+        "TextblockHeight": 29.0,
+        "Background": "#FF87CEFA"
+      },
+      {
+        "Id": "684cf0b9d51e4b1d90ea8f030d88f0da",
+        "Title": "Obtain the color from the dictionary for preview",
+        "Nodes": [
+          "b3614ca48e614c58900c2604c71119b3",
+          "36de35e861f5481ba8964020d15a3560",
+          "942b34fcdd7849938ac281cd38636d81"
+        ],
+        "Left": 2250.2635159890142,
+        "Top": 1033.8078028561602,
+        "Width": 719.064271958066,
+        "Height": 276.84825167780764,
+        "FontSize": 24.0,
+        "InitialTop": 1072.8078028561602,
+        "InitialHeight": 267.84825167780764,
+        "TextblockHeight": 29.0,
+        "Background": "#FF87CEFA"
+      },
+      {
+        "Id": "886ea6934a7c424c91b69700993b20b3",
+        "Title": "Cache the color",
+        "Nodes": [
+          "a992c99faa324b0da22041dd57c40fa8"
+        ],
+        "Left": 390.61977117660865,
+        "Top": 1361.3710723737031,
+        "Width": 139.0,
+        "Height": 161.0,
+        "FontSize": 24.0,
+        "InitialTop": 1429.3710723737031,
+        "InitialHeight": 123.0,
+        "TextblockHeight": 58.0,
+        "Background": "#FF90EE90"
+      },
+      {
+        "Id": "471ff3c69ddc42c88f9e64c3e2e6b2af",
+        "Title": "Cache the ElementId",
+        "Nodes": [
+          "154b26024bd54972b2c47736b46f9582",
+          "3b720524890f4ac1ba044dcaf8de52b5"
+        ],
+        "Left": 136.232402904478,
+        "Top": 1181.88434003885,
+        "Width": 385.549521191873,
+        "Height": 132.0,
+        "FontSize": 24.0,
+        "InitialTop": 1220.88434003885,
+        "InitialHeight": 123.0,
+        "TextblockHeight": 29.0,
+        "Background": "#FF90EE90"
+      },
+      {
+        "Id": "2083a754b5f24622b1b51184175424a5",
+        "Title": "Color lookup dictionary",
+        "Nodes": [
+          "95b5294de1954c288ebaaa3f85835ff8",
+          "2f1e7d7f49574aa199c08f055884d078"
+        ],
+        "Left": 596.60489780766534,
+        "Top": 1296.8375867360708,
+        "Width": 403.26762474939869,
+        "Height": 223.81774097965717,
+        "FontSize": 24.0,
+        "InitialTop": 1335.8375867360708,
+        "InitialHeight": 214.81774097965717,
+        "TextblockHeight": 29.0,
+        "Background": "#FF87CEFA"
+      },
+      {
+        "Id": "0ceab6968d284c24976d3d1737064677",
+        "Title": "Extract geometry for preview for Generative Design",
+        "Nodes": [
+          "de2fdf9156544f868b06012ad067573a",
+          "6490a2b469b146da8d11f87fdac74a98",
+          "1b85ffcb8ad34a9aa9a9fb6f9eb70401",
+          "fd500a63457949ec86296822f8048e5f"
+        ],
+        "Left": 1079.1800368604454,
+        "Top": 642.61027206398023,
+        "Width": 907.99952717751012,
+        "Height": 158.0,
+        "FontSize": 24.0,
+        "InitialTop": 681.61027206398023,
+        "InitialHeight": 149.0,
+        "TextblockHeight": 29.0,
+        "Background": "#FFDCDCDC"
+      },
+      {
+        "Id": "5ef6755b71e54c6ead30ef97dc29d3ac",
+        "Title": "</Title>",
+        "Nodes": [],
+        "Left": 1668.69795424209,
+        "Top": 435.010436361911,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "325e936c51164767a8ffce0ea942fc73",
+        "Title": "For changes made to Revit",
+        "Nodes": [],
+        "Left": 1070.5873646429,
+        "Top": 530.623734986795,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "318e3ef7b36c456ca43ee43a6a4f9a7b",
+        "Title": "For notes and titles",
+        "Nodes": [],
+        "Left": 1260.71668449816,
+        "Top": 531.132762605449,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "aaba4e690bea4a71b07594fd1bc4be95",
+        "Title": "For sliders and other options",
+        "Nodes": [],
+        "Left": 867.81592716415,
+        "Top": 529.938241173309,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "6d760212d9314eb9b2bcc73ec0459155",
+        "Title": "For selection and whatnot",
+        "Nodes": [],
+        "Left": 675.877214302755,
+        "Top": 529.93824117331,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "7a94d1e5e5fa4c92ae1f2e0623bdd972",
+        "Title": "For workflow ",
+        "Nodes": [],
+        "Left": 526.743683252872,
+        "Top": 529.938241173309,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "13c464ec3777466db0b82104a509a360",
+        "Title": "<Title>",
+        "Nodes": [],
+        "Left": 528.216612413185,
+        "Top": 434.137649796498,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "71f8955f622b4827b66894009f0d28b1",
+        "Title": "For general Information",
+        "Nodes": [],
+        "Left": 1409.00441571263,
+        "Top": 531.086886279586,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "1584213ae7994948b7a140293ea1d988",
+        "Title": "For general other needs",
+        "Nodes": [],
+        "Left": 1585.60242895621,
+        "Top": 531.159581767755,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "7d2ea8de505c40be933ee8877f0b8a09",
+        "Title": "GNU License\r\n\r\nThis program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\r\n\r\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.\r\n\r\nYou should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/",
+        "Nodes": [],
+        "Left": 196.78691094722842,
+        "Top": 419.91890411992028,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": -554.5363147767614,
+    "Y": -311.90741437951471,
+    "Zoom": 0.63428776052986491
+  }
+}
